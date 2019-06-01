@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+umask "${UMASK}"
+
+chmod 755 "${APP_DIR}/backup.sh"
+exec s6-setuidgid hotio bash "${APP_DIR}/backup.sh"

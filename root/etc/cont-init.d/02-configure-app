@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+umask "${UMASK}"
+
+if [[ ! -f "${CONFIG_DIR}/app/interval" ]]; then
+    echo "3600" > "${CONFIG_DIR}/app/interval"
+    chown hotio:hotio "${CONFIG_DIR}/app/interval"
+fi
+
+if [[ ! -f "${CONFIG_DIR}/app/backups" ]]; then
+    echo 'echo "Creating backups..."' > "${CONFIG_DIR}/app/backups"
+    echo 'restic --version' >> "${CONFIG_DIR}/app/backups"
+    chown hotio:hotio "${CONFIG_DIR}/app/backups"
+fi
