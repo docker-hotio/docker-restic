@@ -4,4 +4,4 @@
 umask "${UMASK}"
 
 chmod 755 "${APP_DIR}/backup.sh"
-exec s6-setuidgid hotio bash "${APP_DIR}/backup.sh"
+exec s6-setuidgid hotio "${APP_DIR}/backup.sh"
