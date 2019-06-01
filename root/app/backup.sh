@@ -3,14 +3,25 @@
 
 umask "${UMASK}"
 
-while :; do
-    interval="$(cat "${CONFIG_DIR}/app/interval")"
-    backups="${CONFIG_DIR}/app/backups"
+backups="${CONFIG_DIR}/app/backups"
+interval="${CONFIG_DIR}/app/interval"
+onstart="${CONFIG_DIR}/app/onstart"
 
-    echo "Going to sleep for ${interval} seconds..."
-    sleep "${interval}"
-    
-    echo "Executing backups from: ${backups}"
+if [[ -f "${onstart}" ]] && [[ -f "${backups}" ]]; then
+    echo "Creating backups..."
     # shellcheck disable=SC1090
     source "${backups}"
-done
+fi
+
+if [[ -f "${interval}" ]] && [[ -f "${backups}" ]]; then
+    while :; do
+        intervalnum="$(cat "${interval}")"
+
+        echo "Going to sleep for ${intervalnum} seconds..."
+        sleep "${intervalnum}"
+        
+        echo "Creating backups..."
+        # shellcheck disable=SC1090
+        source "${backups}"
+    done
+fi
