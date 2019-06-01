@@ -25,3 +25,5 @@ if [[ -f "${interval}" ]] && [[ -f "${backups}" ]]; then
         source "${backups}"
     done
 fi
+
+exit 0
