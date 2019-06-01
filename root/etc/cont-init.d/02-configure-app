@@ -9,7 +9,7 @@ if [[ ! -f "${CONFIG_DIR}/app/interval" ]]; then
 fi
 
 if [[ ! -f "${CONFIG_DIR}/app/backups" ]]; then
-    echo 'echo "This is a sample file, put your restic backup commands here."' > "${CONFIG_DIR}/app/backups"
+    echo 'echo "This is a sample file, put your restic backup commands here. Do not forget --hostname in your restic backup command."' > "${CONFIG_DIR}/app/backups"
     echo 'restic version' >> "${CONFIG_DIR}/app/backups"
     echo 'rclone version' >> "${CONFIG_DIR}/app/backups"
     chown hotio:hotio "${CONFIG_DIR}/app/backups"
