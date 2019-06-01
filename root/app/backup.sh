@@ -11,6 +11,8 @@ if [[ -f "${onstart}" ]] && [[ -f "${backups}" ]]; then
     echo "Creating backups..."
     # shellcheck disable=SC1090
     source "${backups}"
+else
+    echo "Backup on start disabled!"
 fi
 
 if [[ -f "${interval}" ]] && [[ -f "${backups}" ]]; then
@@ -24,6 +26,6 @@ if [[ -f "${interval}" ]] && [[ -f "${backups}" ]]; then
         # shellcheck disable=SC1090
         source "${backups}"
     done
+else
+    echo "Backup on interval disabled!"
 fi
-
-exit 0
