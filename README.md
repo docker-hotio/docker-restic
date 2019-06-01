@@ -47,7 +47,7 @@ environment:
 
 ## Configuration
 
-There are 3 files you can create. The file `/config/app/backups` containing your restic backup commands (it's a bash script basically). The file `/config/app/interval` that should contain an integer representing the amount of seconds between backups. Finally you can also create the empty file `/config/app/onstart` if you wish to create a backup on the start of the container. Removing `/config/app/interval` will only create a backup on start of the container. If you do not wish to do any automated stuff, don't create any of these files and execute the container like this `docker run --rm --name restic -v /tmp/restic:/config -e TZ=Etc/UTC hotio/restic restic version`.
+There are 2 files you can create. The file `/config/app/backups` containing your restic backup commands (it's a bash script basically) and the file `/config/app/interval` that should contain an integer representing the amount of seconds between backups. If you do not wish to do any automated stuff, don't create any of these files and execute the container like this `docker run --rm --name restic -v /tmp/restic:/config -e TZ=Etc/UTC hotio/restic restic version`.
 
 ## Backing up the configuration
 

@@ -5,27 +5,16 @@ umask "${UMASK}"
 
 backups="${CONFIG_DIR}/app/backups"
 interval="${CONFIG_DIR}/app/interval"
-onstart="${CONFIG_DIR}/app/onstart"
 
-if [[ -f "${onstart}" ]] && [[ -f "${backups}" ]]; then
+if [[ -f "${interval}" ]] && [[ -f "${backups}" ]]; then
+    intervalnum="$(cat "${interval}")"
+
+    echo "Going to sleep for ${intervalnum} seconds..."
+    sleep "${intervalnum}"
+    
     echo "Creating backups..."
     # shellcheck disable=SC1090
     source "${backups}"
 else
-    echo "Backup on start disabled!"
-fi
-
-if [[ -f "${interval}" ]] && [[ -f "${backups}" ]]; then
-    while :; do
-        intervalnum="$(cat "${interval}")"
-
-        echo "Going to sleep for ${intervalnum} seconds..."
-        sleep "${intervalnum}"
-        
-        echo "Creating backups..."
-        # shellcheck disable=SC1090
-        source "${backups}"
-    done
-else
-    echo "Backup on interval disabled!"
+    echo "Backup disabled, no configuration files found!"
 fi
