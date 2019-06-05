@@ -1,0 +1,6 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+if [[ -f ${CONFIG_DIR}/app/crontab ]]; then
+    crontab -u hotio "${CONFIG_DIR}/app/crontab"
+fi

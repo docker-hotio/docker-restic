@@ -47,7 +47,7 @@ environment:
 
 ## Configuration
 
-There are 2 files you can create. The file `/config/app/backups` containing your restic backup commands (it's a bash script basically) and the file `/config/app/interval` that should contain an integer representing the amount of seconds between backups. If you do not wish to do any automated stuff, don't create any of these files and execute the container like this `docker run --rm --name restic -v /tmp/restic:/config -e TZ=Etc/UTC hotio/restic restic version`.
+Create the file `/config/app/crontab`, fill in your crontab configuration and put your restic backup script in `/config/app/`.
 
 ## Backing up the configuration
 
