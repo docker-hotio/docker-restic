@@ -15,7 +15,7 @@ LTC: `MMUFcGLiK6DnnHGFnN2MJLyTfANXw57bDY`
 Just the basics to get the container running:
 
 ```shell
-docker run --rm --name restic -v /tmp/restic:/config -e TZ=Etc/UTC hotio/restic
+docker run --rm --name restic --hostname backupcontainer -v /tmp/restic:/config -e TZ=Etc/UTC hotio/restic
 ```
 
 ```yaml
