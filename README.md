@@ -18,16 +18,6 @@ Just the basics to get the container running:
 docker run --rm --name restic --hostname backupcontainer -v /tmp/restic:/config -e TZ=Etc/UTC hotio/restic
 ```
 
-```yaml
-restic:
-  container_name: restic
-  image: hotio/restic
-  volumes:
-    - /tmp/restic:/config
-  environment:
-    - TZ=Etc/UTC
-```
-
 The environment variables `PUID`, `PGID`, `UMASK` and `BACKUP` are all optional, the values you see below are the default values.
 
 ```shell
@@ -35,14 +25,6 @@ The environment variables `PUID`, `PGID`, `UMASK` and `BACKUP` are all optional,
 -e PGID=1000
 -e UMASK=022
 -e BACKUP=yes
-```
-
-```yaml
-environment:
-  - PUID=1000
-  - PGID=1000
-  - UMASK=022
-  - BACKUP=yes
 ```
 
 ## Configuration
@@ -73,23 +55,12 @@ Additional docker volumes:
 -v /storage/pictures:/pictures:ro
 ```
 
-```yaml
-volumes:
-  - /storage/documents:/documents:ro
-  - /storage/pictures:/pictures:ro
-```
-
 ## Backing up the configuration
 
 By default on every docker container shutdown a backup is created from the configuration files. You can change this behaviour.
 
 ```shell
 -e BACKUP=no
-```
-
-```yaml
-environment:
-  - BACKUP=no
 ```
 
 ## Using a rclone mount
@@ -100,11 +71,6 @@ Mounting a remote filesystem using `rclone` can be done with the environment var
 -e RCLONE="remote1:path/to/files,/localmount1|remote2:path/to/files,/localmount2"
 ```
 
-```yaml
-environment:
-  - RCLONE=remote1:path/to/files,/localmount1|remote2:path/to/files,/localmount2
-```
-
 ## Using a rar2fs mount
 
 Mounting a filesystem using `rar2fs` can be done with the environment variable `RAR2FS`. The new mount will be read-only. Using a `rar2fs` mount makes the use of an unrar script obsolete. You can mount a `rar2fs` mount on top of an `rclone` mount, `rclone` mounts are mounted first.
@@ -113,24 +79,10 @@ Mounting a filesystem using `rar2fs` can be done with the environment variable `
 -e RAR2FS="/folder1-rar,/folder1-unrar|/folder2-rar,/folder2-unrar"
 ```
 
-```yaml
-environment:
-  - RAR2FS=/folder1-rar,/folder1-unrar|/folder2-rar,/folder2-unrar
-```
-
 ## Extra docker privileges
 
 In most cases you will need some or all of the following flags added to your command to get the required docker privileges when using a rclone or rar2fs mount.
 
 ```shell
 --security-opt apparmor:unconfined --cap-add SYS_ADMIN --device /dev/fuse
-```
-
-```yaml
-security_opt:
-  - apparmor:unconfined
-cap_add:
-  - SYS_ADMIN
-devices:
-  - /dev/fuse
 ```
