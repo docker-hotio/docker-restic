@@ -47,7 +47,12 @@ environment:
 
 ## Configuration
 
-Create the file `/config/app/crontab`, fill in your crontab configuration and put your restic backup script in `/config/app/`.
+Create the file `/config/app/crontab` (see example below) and put your restic backup script along with other required files in `/config/app/`. Rclone configuration can be placed in `/config/.config/rclone/rclone.conf`. When the container starts, the crontab file will be installed. A container restart is needed when you've modified your crontab file, for the changes to apply.
+
+```shell
+* * * * * /config/app/backup-every-minute.sh
+@hourly /config/app/backup-hourly.sh
+```
 
 ## Backing up the configuration
 
