@@ -34,8 +34,8 @@ Create the file `/config/app/crontab` (see example below) and put your restic ba
 Example crontab file `/config/app/crontab`:
 
 ```shell
-* * * * * root /config/app/backup-every-minute.sh >> /config/cron.log
-@hourly hotio /config/app/backup-hourly.sh >> /config/cron.log
+* * * * * root /config/app/backup-every-minute.sh >> /config/app/cron.log 2>&1
+@hourly hotio /config/app/backup-hourly.sh >> /config/app/cron.log 2>&1
 ```
 
 Example backup script `/config/app/backup-hourly.sh`:
