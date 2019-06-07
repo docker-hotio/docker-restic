@@ -1,6 +1,13 @@
 #!/usr/bin/with-contenv bash
 # shellcheck shell=bash
 
+umask "${UMASK}"
+
+touch "${CONFIG_DIR}/app/cron.log"
+chown hotio:hotio "${CONFIG_DIR}/app/cron.log"
+
+echo "@reboot hotio echo \"Cron is started...\" >> ${CONFIG_DIR}/app/cron.log 2>&1" > /etc/cron.d/start
+
 if [[ -f ${CONFIG_DIR}/app/crontab ]]; then
     cp "${CONFIG_DIR}/app/crontab" /etc/cron.d/
     cat /etc/cron.d/crontab

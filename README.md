@@ -55,6 +55,10 @@ Additional docker volumes:
 -v /storage/pictures:/pictures:ro
 ```
 
+## Logging
+
+The container runs two services `cron` and `tail`, `tail` reads the content of `/config/app/cron.log`, so that you can use `docker logs` to monitor your scripts. All you have to do is append `>> /config/app/cron.log 2>&1` to your crontab commands.
+
 ## Backing up the configuration
 
 By default on every docker container shutdown a backup is created from the configuration files. You can change this behaviour.
