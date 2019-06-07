@@ -1,4 +1,5 @@
 #!/usr/bin/with-contenv bash
 # shellcheck shell=bash
 
+echo "Output of cron.log:"
 exec tail -f "${CONFIG_DIR}/app/cron.log"
