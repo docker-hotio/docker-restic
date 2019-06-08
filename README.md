@@ -34,8 +34,8 @@ Create the file `/config/app/crontab` (see example below) and put your restic ba
 Example crontab file `/config/app/crontab`:
 
 ```shell
-* * * * * root /config/app/backup-every-minute.sh
-@hourly hotio /config/app/backup-hourly.sh
+* * * * * hotio /config/app/backup-every-minute.sh
+@hourly root /config/app/backup-hourly.sh
 ```
 
 Example backup script `/config/app/backup-hourly.sh`:
@@ -43,9 +43,11 @@ Example backup script `/config/app/backup-hourly.sh`:
 ```shell
 #!/bin/bash
 
+export RCLONE_CONFIG="/config/.config/rclone/rclone.conf"
+
 echo "Creating backup..."
-restic --repo rclone:amazon:backup --password-file /config/app/encryption.key backup --exclude-caches /documents
-restic --repo rclone:amazon:backup --password-file /config/app/encryption.key backup --exclude-caches /pictures
+restic --repo rclone:amazon:backup --password-file /config/app/encryption.key --cache-dir /config/.cache/restic backup --exclude-caches /documents
+restic --repo rclone:amazon:backup --password-file /config/app/encryption.key --cache-dir /config/.cache/restic backup --exclude-caches /pictures
 ```
 
 Additional docker volumes:
