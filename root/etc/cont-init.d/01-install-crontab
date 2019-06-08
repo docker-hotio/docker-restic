@@ -8,5 +8,6 @@ chown hotio:hotio "${CONFIG_DIR}/app/cron.log"
 
 if [[ -f ${CONFIG_DIR}/app/crontab ]]; then
     cp "${CONFIG_DIR}/app/crontab" /etc/cron.d/
+    chmod 644 /etc/cron.d/crontab
     cat /etc/cron.d/crontab
 fi
