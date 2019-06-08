@@ -2,5 +2,8 @@
 # shellcheck shell=bash
 
 if [[ -f ${CONFIG_DIR}/app/crontab ]]; then
-    cat "${CONFIG_DIR}/app/crontab" >> /etc/crontab
+    echo "PATH=/usr/bin:/bin:/usr/local/bin" > /etc/cron.d/crontab
+    cat "${CONFIG_DIR}/app/crontab" >> /etc/cron.d/crontab
+    chmod 644 /etc/cron.d/crontab
+    cat /etc/cron.d/crontab
 fi
