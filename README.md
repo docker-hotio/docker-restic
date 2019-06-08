@@ -34,8 +34,8 @@ Create the file `/config/app/crontab` (see example below) and put your restic ba
 Example crontab file `/config/app/crontab`:
 
 ```shell
-* * * * * root /config/app/backup-every-minute.sh >> /config/app/cron.log 2>&1
-@hourly hotio /config/app/backup-hourly.sh >> /config/app/cron.log 2>&1
+* * * * * root /config/app/backup-every-minute.sh
+@hourly hotio /config/app/backup-hourly.sh
 ```
 
 Example backup script `/config/app/backup-hourly.sh`:
@@ -54,10 +54,6 @@ Additional docker volumes:
 -v /storage/documents:/documents:ro
 -v /storage/pictures:/pictures:ro
 ```
-
-## Logging
-
-The container runs two services `cron` and `tail`, `tail` reads the content of `/config/app/cron.log`, so that you can use `docker logs` to monitor your scripts. All you have to do is append `>> /config/app/cron.log 2>&1` to your crontab commands.
 
 ## Backing up the configuration
 

@@ -4,7 +4,7 @@ ARG DEBIAN_FRONTEND="noninteractive"
 ARG ARCH_RESTIC="amd64"
 
 ENV APP="Restic"
-HEALTHCHECK --interval=60s CMD pidof cron && pidof tail || exit 1
+HEALTHCHECK --interval=60s CMD pidof cron || exit 1
 
 # install packages
 RUN apt update && \
