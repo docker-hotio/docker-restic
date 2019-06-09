@@ -9,7 +9,7 @@ HEALTHCHECK --interval=60s CMD pidof cron || exit 1
 # install packages
 RUN apt update && \
     apt install -y --no-install-recommends --no-install-suggests \
-        cron && \
+        cron libimage-exiftool-perl && \
 # clean up
     apt autoremove -y && \
     apt clean && \
