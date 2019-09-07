@@ -18,13 +18,12 @@ Just the basics to get the container running:
 docker run --rm --name restic --hostname backupcontainer -v /tmp/restic:/config -e TZ=Etc/UTC hotio/restic
 ```
 
-The environment variables `PUID`, `PGID`, `UMASK` and `BACKUP` are all optional, the values you see below are the default values.
+The environment variables below are all optional, the values you see are the defaults.
 
 ```shell
 -e PUID=1000
 -e PGID=1000
 -e UMASK=022
--e BACKUP=yes
 ```
 
 ## Configuration
@@ -55,14 +54,6 @@ Additional docker volumes:
 ```shell
 -v /storage/documents:/documents:ro
 -v /storage/pictures:/pictures:ro
-```
-
-## Backing up the configuration
-
-By default on every docker container shutdown a backup is created from the configuration files. You can change this behaviour.
-
-```shell
--e BACKUP=no
 ```
 
 ## Using a rclone mount
