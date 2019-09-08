@@ -1,8 +1,12 @@
 FROM hotio/base
 
 ARG DEBIAN_FRONTEND="noninteractive"
-ARG ARCH_RESTIC="amd64"
+ARG ARCH_RESTIC
+ARG GIT_COMMIT
+ARG GIT_TAG
+ARG ARCH
 
+ENV GIT_COMMIT="${GIT_COMMIT}" GIT_TAG="${GIT_TAG}" ARCH="${ARCH}"
 ENV APP="Restic"
 HEALTHCHECK --interval=60s CMD pidof cron || exit 1
 
