@@ -2,11 +2,7 @@ FROM hotio/base
 
 ARG DEBIAN_FRONTEND="noninteractive"
 ARG ARCH_RESTIC
-ARG COMMIT
-ARG TAG
 
-ENV COMMIT="${COMMIT}" TAG="${TAG}"
-ENV APP="Restic"
 HEALTHCHECK --interval=60s CMD pidof cron || exit 1
 
 # install packages
@@ -23,3 +19,9 @@ RUN apt update && \
 RUN curl -fsSL "https://github.com/restic/restic/releases/download/v0.9.5/restic_0.9.5_linux_${ARCH_RESTIC}.bz2" | bunzip2 | dd of=/usr/local/bin/restic && chmod 755 /usr/local/bin/restic
 
 COPY root/ /
+
+ARG COMMIT
+ARG TAG
+ARG APP
+
+ENV COMMIT="${COMMIT}" TAG="${TAG}" APP="${APP}"
