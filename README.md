@@ -1,7 +1,8 @@
-# [docker-restic](https://github.com/hotio/docker-restic)
+# restic
 
-![Docker Pulls](https://img.shields.io/docker/pulls/hotio/restic?style=flat-square)
-![Drone (cloud)](https://img.shields.io/drone/build/hotio/docker-restic?style=flat-square)
+[![GitHub](https://img.shields.io/badge/source-github-lightgrey?style=flat-square)](https://github.com/hotio/docker-restic)
+[![Docker Pulls](https://img.shields.io/docker/pulls/hotio/restic?style=flat-square)](https://hub.docker.com/r/hotio/restic)
+[![Drone (cloud)](https://img.shields.io/drone/build/hotio/docker-restic?style=flat-square)](https://cloud.drone.io/hotio/docker-restic)
 
 ## Donations
 
