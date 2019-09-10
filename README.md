@@ -1,8 +1,7 @@
-# [Restic](https://github.com/restic/restic)
+# [docker-restic](https://github.com/hotio/docker-restic)
 
-[![badge](https://images.microbadger.com/badges/image/hotio/restic.svg)](https://microbadger.com/images/hotio/restic "Get your own image badge on microbadger.com")
-[![badge](https://images.microbadger.com/badges/version/hotio/restic.svg)](https://microbadger.com/images/hotio/restic "Get your own version badge on microbadger.com")
-[![badge](https://images.microbadger.com/badges/commit/hotio/restic.svg)](https://microbadger.com/images/hotio/restic "Get your own commit badge on microbadger.com")
+![Docker Pulls](https://img.shields.io/docker/pulls/hotio/restic?style=flat-square)
+![Drone (cloud)](https://img.shields.io/drone/build/hotio/docker-restic?style=flat-square)
 
 ## Donations
 
