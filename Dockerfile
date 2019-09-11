@@ -20,8 +20,5 @@ RUN curl -fsSL "https://github.com/restic/restic/releases/download/v0.9.5/restic
 
 COPY root/ /
 
-ARG COMMIT
 ARG TAG
-ARG APP
-
-ENV COMMIT="${COMMIT}" TAG="${TAG}" APP="${APP}"
+ENV TAG="${TAG}"
