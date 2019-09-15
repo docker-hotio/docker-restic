@@ -16,6 +16,8 @@ RUN apt update && \
 
 COPY root/ /
 
+# https://github.com/restic/restic/releases
+ENV RESTIC_VERSION=0.9.5
+
 # install app
-RUN version=$(sed -n '1p' /versions/restic) && \
-    curl -fsSL "https://github.com/restic/restic/releases/download/v${version}/restic_${version}_linux_amd64.bz2" | bunzip2 | dd of=/usr/local/bin/restic && chmod 755 /usr/local/bin/restic
+RUN curl -fsSL "https://github.com/restic/restic/releases/download/v${RESTIC_VERSION}/restic_${RESTIC_VERSION}_linux_amd64.bz2" | bunzip2 | dd of=/usr/local/bin/restic && chmod 755 /usr/local/bin/restic
