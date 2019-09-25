@@ -3,8 +3,6 @@ FROM hotio/base:${BRANCH}
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
-HEALTHCHECK --interval=60s CMD pidof cron || exit 1
-
 # install packages
 RUN apt update && \
     apt install -y --no-install-recommends --no-install-suggests \
