@@ -1,8 +1,7 @@
 # restic
 
-[![GitHub](https://img.shields.io/badge/source-github-lightgrey?style=flat-square)](https://github.com/hotio/docker-restic)
-[![Docker Pulls](https://img.shields.io/docker/pulls/hotio/restic?style=flat-square)](https://hub.docker.com/r/hotio/restic)
-[![Drone (cloud)](https://img.shields.io/drone/build/hotio/docker-restic?style=flat-square)](https://cloud.drone.io/hotio/docker-restic)
+[![GitHub](https://img.shields.io/badge/source-github-lightgrey)](https://github.com/hotio/docker-restic)
+[![Docker Pulls](https://img.shields.io/docker/pulls/hotio/restic)](https://hub.docker.com/r/hotio/restic)
 
 ## Starting the container
 
@@ -22,10 +21,10 @@ The environment variables below are all optional, the values you see are the def
 
 ## Tags
 
-| Tag      | Description                    |
-| ---------|--------------------------------|
-| latest   | The same as `stable`           |
-| stable   | Stable version                 |
+| Tag      | Description                    | Build Status                                                                                                                                          |
+| ---------|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| latest   | The same as `stable`           |                                                                                                                                                       |
+| stable   | Stable version                 | [![Build Status](https://cloud.drone.io/api/badges/hotio/docker-restic/status.svg?ref=refs/heads/stable)](https://cloud.drone.io/hotio/docker-restic) |
 
 You can also find tags that reference a commit or version number.
 
