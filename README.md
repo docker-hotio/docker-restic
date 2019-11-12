@@ -20,6 +20,15 @@ The environment variables below are all optional, the values you see are the def
 -e UMASK=022
 ```
 
+## Tags
+
+| Tag      | Description                    |
+| ---------|--------------------------------|
+| latest   | The same as `stable`           |
+| stable   | Stable version                 |
+
+You can also find tags that reference a commit or version number.
+
 ## Configuration
 
 Create the file `/config/app/crontab` (see example below) and put your restic backup script along with other required files in `/config/app/`. Rclone configuration can be placed in `/config/.config/rclone/rclone.conf`. When the container starts, the crontab file will be installed. A container restart is needed when you've modified your crontab file, for the changes to apply.
