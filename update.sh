@@ -1,21 +1,12 @@
 #!/bin/bash
 
-###################
 version=$(curl -fsSL "https://api.github.com/repos/restic/restic/releases/latest" | jq -r .tag_name | sed s/v//g)
-app=RESTIC
-###################
-
-location=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-cd "${location}" || exit 1
-
-find . -type f -name '*.Dockerfile' -exec sed -i "s/ARG ${app}_VERSION=.*$/ARG ${app}_VERSION=${version}/g" {} \;
+find . -type f -name '*.Dockerfile' -exec sed -i "s/ARG RESTIC_VERSION=.*$/ARG RESTIC_VERSION=${version}/g" {} \;
 sed -i "s/{TAG_VERSION=.*}$/{TAG_VERSION=${version}}/g" .drone.yml
 
-if [[ -n "$(git status --untracked-files=no --porcelain)" ]]; then
-    git add ./*.Dockerfile
-    git add ./.drone.yml
-    git commit -m "Updated version to: ${version}"
-    echo "Updated version to: ${version}"
-else
-    echo "Version is still: ${version}"
-fi
+version_rclone=$(curl -fsSL "https://api.github.com/repos/ncw/rclone/releases/latest" | jq -r .tag_name | sed s/v//g)
+find . -type f -name '*.Dockerfile' -exec sed -i "s/ARG RCLONE_VERSION=.*$/ARG RCLONE_VERSION=${version_rclone}/g" {} \;
+
+version="${version}/${version_rclone}"
+
+echo "##[set-output name=version;]${version}"
