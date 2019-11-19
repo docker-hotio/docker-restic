@@ -14,7 +14,7 @@ RUN apt update && \
 # https://github.com/restic/restic/releases
 # https://github.com/ncw/rclone/releases
 ARG RESTIC_VERSION=0.9.5
-ARG RCLONE_VERSION=1.50.1
+ARG RCLONE_VERSION=1.50.2
 
 # install restic
 RUN curl -fsSL "https://github.com/restic/restic/releases/download/v${RESTIC_VERSION}/restic_${RESTIC_VERSION}_linux_arm.bz2" | bunzip2 | dd of=/usr/local/bin/restic && chmod 755 /usr/local/bin/restic && \
