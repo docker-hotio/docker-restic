@@ -13,7 +13,7 @@ RUN apt update && \
 
 # https://github.com/restic/restic/releases
 # https://github.com/ncw/rclone/releases
-ARG RESTIC_VERSION=0.9.5
+ARG RESTIC_VERSION=0.9.6
 ARG RCLONE_VERSION=1.50.2
 
 # install restic
