@@ -2,11 +2,16 @@ FROM hotio/base@sha256:73ecba782cae2d4d6a1b229ef5301220d58638aed30e261358ac09eb4
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
+ARG APPRISE_VERSION=0.8.3
+
 # install packages
 RUN apt update && \
     apt install -y --no-install-recommends --no-install-suggests \
-        cron && \
+        cron \
+        python3-pip python3-setuptools && \
+    pip3 install --no-cache-dir --upgrade apprise==${APPRISE_VERSION} && \
 # clean up
+    apt purge -y python3-pip python3-setuptools && \
     apt autoremove -y && \
     apt clean && \
     rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
