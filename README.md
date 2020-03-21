@@ -12,7 +12,10 @@
 Just the basics to get the container running:
 
 ```shell
-docker run --rm --name restic --hostname <your_hostname> -v /<host_folder_config>:/config hotio/restic
+docker run --rm --name restic \
+    --hostname <your_hostname> \
+    -v /<host_folder_config>:/config \
+    hotio/restic
 ```
 
 The environment variables below are all optional, the values you see are the defaults.
