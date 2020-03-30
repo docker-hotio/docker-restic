@@ -2,7 +2,7 @@ FROM hotio/base@sha256:f1629f6864be54d0d4ed469bbc5fc20f8f7a92121fbc536368c9279e2
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
-ARG APPRISE_VERSION=0.8.4
+ARG APPRISE_VERSION=0.8.5
 
 # install packages
 RUN apt update && \
