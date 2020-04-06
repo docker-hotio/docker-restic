@@ -76,7 +76,7 @@ If you have a need to do additional stuff when the container starts or stops, yo
 
 echo "Hello, this is me, your script."
 ```
-## e-mail cron Output
+## Send cron output as an email
 
 As monitoring the backup process is an essential part of an backup strategy, the container contains the
 [msmtp](https://marlam.de/msmtp/) package to optionally send cron output to an e-mail account.
@@ -85,7 +85,7 @@ If not configured, cron will just do nothing with output produced by executed ta
 To configure e-mail submission, you have to create and customize `/config/app/msmtprc` and `/config/app/aliases` (see examples below). The former is the main configuration file of your e-mail configuration, the latter a mapping file where the recipient of the output is specified.
 The [documentation of msmtp](https://marlam.de/msmtp/documentation/) contains all the required information to setup these files. A container restart is not needed for the changes to apply.
 
-Example msmtprc file `/config/app/msmtprc`:
+Example mail configuration file `/config/app/msmtprc`:
 
 ```
 # Set default values for all following accounts.
