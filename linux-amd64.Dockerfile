@@ -8,8 +8,12 @@ ARG APPRISE_VERSION=0.8.5
 RUN apt update && \
     apt install -y --no-install-recommends --no-install-suggests \
         cron \
+        msmtp msmtp-mta \
         python3-pip python3-setuptools && \
     pip3 install --no-cache-dir --upgrade apprise==${APPRISE_VERSION} && \
+# aim msmtp configuration files to outer config directory
+    ln -s /config/app/msmtprc /etc/msmtprc \
+    ln -s /config/app/aliases /etc/aliases \
 # clean up
     apt purge -y python3-pip python3-setuptools && \
     apt autoremove -y && \
