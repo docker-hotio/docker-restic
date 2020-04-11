@@ -2,7 +2,7 @@ FROM hotio/base@sha256:e657aeb562b27964f7f214fe4f2cbccd768703636090972fd013be370
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
-ARG APPRISE_VERSION=0.8.5
+ARG APPRISE_VERSION
 
 # install packages
 RUN apt update && \
@@ -16,10 +16,8 @@ RUN apt update && \
     apt clean && \
     rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
 
-# https://github.com/restic/restic/releases
-# https://github.com/ncw/rclone/releases
-ARG RESTIC_VERSION=0.9.6
-ARG RCLONE_VERSION=1.51.0
+ARG RESTIC_VERSION
+ARG RCLONE_VERSION
 
 # install restic
 RUN bz2file="/tmp/restic.bz2" && curl -fsSL -o "${bz2file}" "https://github.com/restic/restic/releases/download/v${RESTIC_VERSION}/restic_${RESTIC_VERSION}_linux_arm.bz2" && bunzip2 -c "${bz2file}" | dd of=/usr/local/bin/restic && chmod 755 /usr/local/bin/restic && rm "${bz2file}" && \
