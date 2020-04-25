@@ -1,4 +1,4 @@
-FROM hotio/base@sha256:e9e7a9c6526ef0263348fb100927ba401ecd079b86fcc261417e891a1033a90b
+FROM hotio/base@sha256:d668da1b18583d94b5ddb8e8c25012d24bf3ad54231ab8af2f0ed0ca02bcc6ff
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
@@ -6,6 +6,7 @@ ARG APPRISE_VERSION
 
 # install packages
 RUN apt update && \
+    apt-mark hold libc6 && \
     apt install -y --no-install-recommends --no-install-suggests \
         cron \
         python3-pip python3-setuptools && \
