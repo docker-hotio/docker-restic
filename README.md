@@ -1,6 +1,6 @@
 # restic
 
-<img src="https://raw.githubusercontent.com/hotio/unraid-templates/master/hotio/img/restic.png" alt="Logo" height="130" width="130">
+<img src="https://raw.githubusercontent.com/hotio/docker-restic/master/img/restic.png" alt="Logo" height="130" width="130">
 
 [![GitHub](https://img.shields.io/badge/source-github-lightgrey)](https://github.com/hotio/docker-restic)
 [![Docker Pulls](https://img.shields.io/docker/pulls/hotio/restic)](https://hub.docker.com/r/hotio/restic)
