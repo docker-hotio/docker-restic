@@ -1,21 +1,5 @@
 ---
 kind: pipeline
-name: checks
-
-trigger:
-  event:
-    - push
-
-steps:
-- name: shellcheck
-  image: koalaman/shellcheck-alpine
-  pull: always
-  commands:
-    - shellcheck --version
-    - for file in $(find ./root -type f); do echo $file; shellcheck $file; done;
-
----
-kind: pipeline
 name: linux-amd64
 
 platform:
@@ -43,10 +27,6 @@ steps:
     build_args:
       - RESTIC_VERSION=${RESTIC_VERSION=0.9.6}
       - RCLONE_VERSION=${RCLONE_VERSION=1.51.0}
-      - APPRISE_VERSION=${APPRISE_VERSION=0.8.5}
-
-depends_on:
-  - checks
 
 ---
 kind: pipeline
@@ -72,7 +52,16 @@ steps:
   commands:
     - rclone version
     - restic version
-    - apprise --version
+- name: create-backup
+  image: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}:${DRONE_COMMIT_BRANCH}-${DRONE_COMMIT_SHA:0:7}-${DRONE_BUILD_NUMBER}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
+  pull: always
+  environment:
+    RESTIC_PASSWORD: testpassphrase
+  commands:
+    - mkdir /tmp/restictest
+    - restic init --repo /tmp/restictest
+    - restic -r /tmp/restictest --verbose backup "/var/log/"
+    - restic -r /tmp/restictest --verbose forget --keep-last 1 --prune
 
 depends_on:
   - linux-amd64
@@ -106,10 +95,6 @@ steps:
     build_args:
       - RESTIC_VERSION=${RESTIC_VERSION=0.9.6}
       - RCLONE_VERSION=${RCLONE_VERSION=1.51.0}
-      - APPRISE_VERSION=${APPRISE_VERSION=0.8.5}
-
-depends_on:
-  - checks
 
 ---
 kind: pipeline
@@ -135,7 +120,16 @@ steps:
   commands:
     - rclone version
     - restic version
-    - apprise --version
+- name: create-backup
+  image: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}:${DRONE_COMMIT_BRANCH}-${DRONE_COMMIT_SHA:0:7}-${DRONE_BUILD_NUMBER}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
+  pull: always
+  environment:
+    RESTIC_PASSWORD: testpassphrase
+  commands:
+    - mkdir /tmp/restictest
+    - restic init --repo /tmp/restictest
+    - restic -r /tmp/restictest --verbose backup "/var/log/"
+    - restic -r /tmp/restictest --verbose forget --keep-last 1 --prune
 
 depends_on:
   - linux-arm64
@@ -169,10 +163,6 @@ steps:
     build_args:
       - RESTIC_VERSION=${RESTIC_VERSION=0.9.6}
       - RCLONE_VERSION=${RCLONE_VERSION=1.51.0}
-      - APPRISE_VERSION=${APPRISE_VERSION=0.8.5}
-
-depends_on:
-  - checks
 
 ---
 kind: pipeline
@@ -198,7 +188,16 @@ steps:
   commands:
     - rclone version
     - restic version
-    - apprise --version
+- name: create-backup
+  image: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME##docker-}:${DRONE_COMMIT_BRANCH}-${DRONE_COMMIT_SHA:0:7}-${DRONE_BUILD_NUMBER}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
+  pull: always
+  environment:
+    RESTIC_PASSWORD: testpassphrase
+  commands:
+    - mkdir /tmp/restictest
+    - restic init --repo /tmp/restictest
+    - restic -r /tmp/restictest --verbose backup "/var/log/"
+    - restic -r /tmp/restictest --verbose forget --keep-last 1 --prune
 
 depends_on:
   - linux-arm

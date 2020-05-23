@@ -1,27 +1,23 @@
-FROM hotio/base@sha256:b7f9f793ba275ea953ce4979b7a7c86e35ec3c2a93ca5932d0e0845ede0b3367
+FROM ubuntu@sha256:03e4a3b262fd97281d7290c366cae028e194ae90931bc907991444d026d6392a
+LABEL maintainer="hotio"
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
-ARG APPRISE_VERSION
+ENTRYPOINT ["restic"]
 
-# install packages
+# install
 RUN apt update && \
     apt install -y --no-install-recommends --no-install-suggests \
-        cron \
-        python3-pip python3-setuptools && \
-    pip3 install --no-cache-dir --upgrade apprise==${APPRISE_VERSION} && \
+        curl && \
 # clean up
-    apt purge -y python3-pip python3-setuptools && \
     apt autoremove -y && \
     apt clean && \
     rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
 
-ARG RESTIC_VERSION
-ARG RCLONE_VERSION
-
 # install restic
-RUN bz2file="/tmp/restic.bz2" && curl -fsSL -o "${bz2file}" "https://github.com/restic/restic/releases/download/v${RESTIC_VERSION}/restic_${RESTIC_VERSION}_linux_arm64.bz2" && bunzip2 -c "${bz2file}" | dd of=/usr/local/bin/restic && chmod 755 /usr/local/bin/restic && rm "${bz2file}" && \
-# install rclone
-    debfile="/tmp/rclone.deb" && curl -fsSL -o "${debfile}" "https://github.com/ncw/rclone/releases/download/v${RCLONE_VERSION}/rclone-v${RCLONE_VERSION}-linux-arm64.deb" && dpkg --install "${debfile}" && rm "${debfile}"
+ARG RESTIC_VERSION
+RUN bz2file="/tmp/restic.bz2" && curl -fsSL -o "${bz2file}" "https://github.com/restic/restic/releases/download/v${RESTIC_VERSION}/restic_${RESTIC_VERSION}_linux_arm64.bz2" && bunzip2 -c "${bz2file}" | dd of=/usr/local/bin/restic && chmod 755 /usr/local/bin/restic && rm "${bz2file}"
 
-COPY root/ /
+# install rclone
+ARG RCLONE_VERSION
+RUN debfile="/tmp/rclone.deb" && curl -fsSL -o "${debfile}" "https://github.com/ncw/rclone/releases/download/v${RCLONE_VERSION}/rclone-v${RCLONE_VERSION}-linux-arm64.deb" && dpkg --install "${debfile}" && rm "${debfile}"
