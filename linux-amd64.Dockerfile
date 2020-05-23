@@ -1,4 +1,4 @@
-FROM ubuntu@sha256:b58746c8a89938b8c9f5b77de3b8cf1fe78210c696ab03a1442e235eea65d84f as builder
+FROM ubuntu:18.04 as builder
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
