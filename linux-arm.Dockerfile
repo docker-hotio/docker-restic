@@ -8,7 +8,7 @@ ENTRYPOINT ["restic"]
 # install
 RUN apt update && \
     apt install -y --no-install-recommends --no-install-suggests \
-        curl && \
+        ca-certificates curl && \
 # clean up
     apt autoremove -y && \
     apt clean && \
