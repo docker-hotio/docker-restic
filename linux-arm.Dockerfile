@@ -19,5 +19,15 @@ RUN zipfile="/tmp/rclone.zip" && curl -fsSL -o "${zipfile}" "https://github.com/
 FROM ubuntu@sha256:214d66c966334f0223b036c1e56d9794bc18b71dd20d90abb28d838a5e7fe7f1
 LABEL maintainer="hotio"
 ENTRYPOINT ["restic"]
+
+# install packages
+RUN apt update && \
+    apt install -y --no-install-recommends --no-install-suggests \
+        ca-certificates && \
+# clean up
+    apt autoremove -y && \
+    apt clean && \
+    rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
+
 COPY --from=builder /usr/local/bin/restic /usr/local/bin/restic
 COPY --from=builder /usr/local/bin/rclone /usr/local/bin/rclone
