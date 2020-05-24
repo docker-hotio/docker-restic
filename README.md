@@ -15,6 +15,8 @@ Just the basics to get the container running:
 docker run --rm hotio/restic ...
 ```
 
+The default `ENTRYPOINT` is `restic`.
+
 ## Tags
 
 | Tag      | Description                     | Build Status                                                                                                                                          | Last Updated                                                                                                                                                  |
