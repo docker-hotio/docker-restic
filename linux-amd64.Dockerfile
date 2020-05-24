@@ -5,11 +5,7 @@ ARG DEBIAN_FRONTEND="noninteractive"
 # install
 RUN apt update && \
     apt install -y --no-install-recommends --no-install-suggests \
-        ca-certificates curl unzip && \
-# clean up
-    apt autoremove -y && \
-    apt clean && \
-    rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
+        ca-certificates curl unzip
 
 # install restic
 ARG RESTIC_VERSION
