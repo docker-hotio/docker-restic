@@ -12,7 +12,7 @@ if [[ ${1} == "checkdigests" ]]; then
 else
     version_restic=$(curl -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" -fsSL "https://api.github.com/repos/restic/restic/releases/latest" | jq -r .tag_name | sed s/v//g)
     [[ -z ${version_restic} ]] && exit 1
-    version_rclone=$(curl -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" -fsSL "https://api.github.com/repos/ncw/rclone/releases/latest" | jq -r .tag_name | sed s/v//g)
+    version_rclone=$(curl -fsSL "https://downloads.rclone.org/version.txt" | sed s/rclone\ v//g)
     [[ -z ${version_rclone} ]] && exit 1
     sed -i "s/{RESTIC_VERSION=[^}]*}/{RESTIC_VERSION=${version_restic}}/g" .drone.yml
     sed -i "s/{RCLONE_VERSION=[^}]*}/{RCLONE_VERSION=${version_rclone}}/g" .drone.yml
