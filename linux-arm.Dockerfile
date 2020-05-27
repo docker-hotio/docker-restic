@@ -1,11 +1,7 @@
-FROM ubuntu:18.04 as builder
-
-ARG DEBIAN_FRONTEND="noninteractive"
+FROM alpine:3.11 as builder
 
 # install
-RUN apt update && \
-    apt install -y --no-install-recommends --no-install-suggests \
-        ca-certificates curl unzip
+RUN apk add --no-cache ca-certificates curl unzip
 
 # install restic
 ARG RESTIC_VERSION
@@ -16,18 +12,12 @@ ARG RCLONE_VERSION
 RUN zipfile="/tmp/rclone.zip" && curl -fsSL -o "${zipfile}" "https://github.com/ncw/rclone/releases/download/v${RCLONE_VERSION}/rclone-v${RCLONE_VERSION}-linux-arm.zip" && unzip -q "${zipfile}" -d "/tmp" && cp /tmp/rclone-*-linux-arm/rclone /usr/local/bin/rclone && chmod 755 /usr/local/bin/rclone
 
 
-FROM ubuntu@sha256:214d66c966334f0223b036c1e56d9794bc18b71dd20d90abb28d838a5e7fe7f1
+FROM alpine@sha256:19c4e520fa84832d6deab48cd911067e6d8b0a9fa73fc054c7b9031f1d89e4cf
 LABEL maintainer="hotio"
 ENTRYPOINT ["restic"]
 
 # install packages
-RUN apt update && \
-    apt install -y --no-install-recommends --no-install-suggests \
-        ca-certificates && \
-# clean up
-    apt autoremove -y && \
-    apt clean && \
-    rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
+RUN apk add --no-cache ca-certificates
 
 COPY --from=builder /usr/local/bin/restic /usr/local/bin/restic
 COPY --from=builder /usr/local/bin/rclone /usr/local/bin/rclone
