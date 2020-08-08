@@ -20,9 +20,9 @@ The default `ENTRYPOINT` is `restic`.
 
 ## Tags
 
-| Tag      | Description                     | Build Status                                                                                                                                          | Last Updated                                                                                                                                                  |
-| ---------|---------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| latest   | The same as `stable`            |                                                                                                                                                       |                                                                                                                                                               |
-| stable   | Stable version                  | [![Build Status](https://cloud.drone.io/api/badges/hotio/docker-restic/status.svg?ref=refs/heads/stable)](https://cloud.drone.io/hotio/docker-restic) | [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/hotio/docker-restic/stable)](https://github.com/hotio/docker-restic/commits/stable) |
+| Tag      | Description                     |
+| ---------|---------------------------------|
+| latest   | The same as `stable`            |
+| stable   | Stable version                  |
 
 You can also find tags that reference a commit or version number.
