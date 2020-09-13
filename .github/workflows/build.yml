@@ -50,7 +50,7 @@ jobs:
             --build-arg LABEL_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/blob/master/README.md" \
             --build-arg LABEL_VERSION="${RESTIC_VERSION=0.9.6}" \
             --build-arg RESTIC_VERSION="${RESTIC_VERSION=0.9.6}" \
-            --build-arg RCLONE_VERSION="${RCLONE_VERSION=1.53.0}" \
+            --build-arg RCLONE_VERSION="${RCLONE_VERSION=1.53.1}" \
             --file ./${ARCHITECTURE}.Dockerfile ./
 
       - name: Push to GitHub registry
