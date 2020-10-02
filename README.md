@@ -21,8 +21,8 @@ The default `ENTRYPOINT` is `restic`.
 
 ## Tags
 
-| Tag              | Upstream        |
-| -----------------|-----------------|
-| release (latest) | GitHub releases |
+| Tag                | Upstream        |
+| -------------------|-----------------|
+| `release` (latest) | GitHub releases |
 
 You can also find tags that reference a commit or version number.
