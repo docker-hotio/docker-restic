@@ -1,6 +1,6 @@
 # restic
 
-![logo](https://hotio.dev/img/restic.png)
+[<img src="https://hotio.dev/img/restic.png" alt="logo" height="130" width="130">](https://github.com/restic/restic)
 
 ![Base](https://img.shields.io/badge/base-alpine-blue)
 [![GitHub](https://img.shields.io/badge/source-github-lightgrey)](https://github.com/hotio/docker-restic)
