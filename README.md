@@ -1,5 +1,3 @@
-# restic
-
 [<img src="https://hotio.dev/img/restic.png" alt="logo" height="130" width="130">](https://github.com/restic/restic)
 
 ![Base](https://img.shields.io/badge/base-alpine-blue)
