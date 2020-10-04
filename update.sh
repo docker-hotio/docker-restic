@@ -31,6 +31,7 @@ else
     [[ -z ${version_rclone} ]] && exit 1
     echo "VERSION=${version_restic}" > VERSION
     echo "RCLONE_VERSION=${version_rclone}" >> VERSION
+    echo '{"version":"'"${version_restic}"'"}' > VERSION.json
     version="${version_restic}/${version_rclone}"
     echo "##[set-output name=version;]${version}"
 fi
