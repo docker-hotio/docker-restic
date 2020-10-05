@@ -1,1 +1,4 @@
-{"version":"0.10.0"}
+{
+  "version": "0.10.0",
+  "rclone_version": "1.53.1"
+}

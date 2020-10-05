@@ -29,9 +29,7 @@ else
     [[ -z ${version_restic} ]] && exit 1
     version_rclone=$(curl -fsSL "https://downloads.rclone.org/version.txt" | sed s/rclone\ v//g)
     [[ -z ${version_rclone} ]] && exit 1
-    echo "VERSION=${version_restic}" > VERSION
-    echo "RCLONE_VERSION=${version_rclone}" >> VERSION
-    echo '{"version":"'"${version_restic}"'"}' > VERSION.json
+    echo '{"version":"'"${version_restic}"'","rclone_version":"'"${version_rclone}"'"}' | jq . > VERSION.json
     version="${version_restic}/${version_rclone}"
     echo "##[set-output name=version;]${version}"
 fi
