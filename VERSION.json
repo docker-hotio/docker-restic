@@ -1,4 +1,5 @@
 {
   "version": "0.11.0",
-  "rclone_version": "1.53.3"
+  "rclone_version": "1.53.3",
+  "changelog": "null"
 }

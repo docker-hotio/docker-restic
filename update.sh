@@ -29,7 +29,8 @@ else
     [[ -z ${version_restic} ]] && exit 1
     version_rclone=$(curl -fsSL "https://downloads.rclone.org/version.txt" | sed s/rclone\ v//g)
     [[ -z ${version_rclone} ]] && exit 1
-    echo '{"version":"'"${version_restic}"'","rclone_version":"'"${version_rclone}"'"}' | jq . > VERSION.json
-    version="${version_restic}/${version_rclone}"
-    echo "##[set-output name=version;]${version}"
+    old_version=$(jq -r '.version' < VERSION.json)
+    changelog=$(jq -r '.changelog' < VERSION.json)
+    [[ "${old_version}" != "${version_restic}" ]] && changelog="https://github.com/restic/restic/compare/v${old_version}...v${version_restic}"
+    echo '{"version":"'"${version_restic}"'","rclone_version":"'"${version_rclone}"'","changelog":"'"${changelog}"'"}' | jq . > VERSION.json
 fi
