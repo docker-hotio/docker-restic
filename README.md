@@ -19,4 +19,4 @@ The default `ENTRYPOINT` is `restic`.
 
 ## Tags
 
-Go [here](https://hotio.dev/containers-overview/#hotiorestic) to see all available tags.
+Go [here](https://hotio.dev/tags-overview/#hotiorestic) to see all available tags.
